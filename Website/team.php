@@ -135,7 +135,8 @@ if ($sql3['meisterschaften'] > 0 OR $sql3['pokalsiege'] > 0 OR $sql3['cupsiege']
 </thead>
 <tbody>
 <?php
-$sql4 = "SELECT ids, position, vorname, nachname, wiealt, staerke, talent, frische, verletzung, transfermarkt, marktwert FROM ".$prefix."spieler WHERE team = '".$clearid."' ORDER BY position DESC";
+//$sql4 = "SELECT ids, position, vorname, nachname, wiealt, staerke, talent, frische, verletzung, transfermarkt, marktwert FROM ".$prefix."spieler WHERE team = '".$clearid."' ORDER BY position DESC";
+$sql4 = "SELECT ids, position, vorname, nachname, wiealt, staerke, talent, frische, verletzung, transfermarkt, marktwert FROM ".$prefix."spieler WHERE team = '".$clearid."' ORDER BY position='S', position='M', position='A', position='T', staerke DESC";
 $sql5 = mysql_query($sql4);
 $counter = 0;
 $durchschnittsAlterWerte = array();
@@ -187,3 +188,4 @@ echo '<tr class="odd"><td colspan="6">'.__('Team-Marktwert: %s €', number_form
 <p><strong><?php echo _('Mannschaftsteile:').'</strong> '._('T: Torwart, A: Abwehr, M: Mittelfeld, S: Sturm'); ?></p>
 <p><strong><?php echo _('Durchgestrichen:').'</strong> '._('verletzte oder gesperrte Spieler'); ?></p>
 <?php include 'zz3.php'; ?>
+

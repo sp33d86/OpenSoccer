@@ -264,7 +264,10 @@ while ($gf3 = mysql_fetch_assoc($gf2)) {
 </thead>
 <tbody>
 <?php
-$sql1 = "SELECT ids, position, vorname, nachname, wiealt, moral, staerke, talent, frische, startelf_".$spieltypAufstellung." AS startelfWert, verletzung FROM ".$prefix."spieler WHERE team = '".$cookie_team."' ORDER BY position DESC, staerke DESC";
+// Falsche Reihenfolge bei Aufstellung: T, S, M, A
+//$sql1 = "SELECT ids, position, vorname, nachname, wiealt, moral, staerke, talent, frische, startelf_".$spieltypAufstellung." AS startelfWert, verletzung FROM ".$prefix."spieler WHERE team = '".$cookie_team."' ORDER BY position DESC, staerke DESC";
+// Richtige Reihenfolge bei Aufstellung: T, A, M, S
+$sql1 = "SELECT ids, position, vorname, nachname, wiealt, moral, staerke, talent, frische, startelf_".$spieltypAufstellung." AS startelfWert, verletzung FROM ".$prefix."spieler WHERE team = '".$cookie_team."' ORDER BY position='S', position='M', position='A', position='T', staerke DESC";
 $sql2 = mysql_query($sql1);
 $counter = 0;
 while ($sql3 = mysql_fetch_assoc($sql2)) {
@@ -316,3 +319,4 @@ while ($sql3 = mysql_fetch_assoc($sql2)) {
 <p><?php echo _('Du musst angemeldet sein, um diese Seite aufrufen zu können!'); ?></p>
 <?php } ?>
 <?php include 'zz3.php'; ?>
+

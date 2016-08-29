@@ -783,7 +783,8 @@ while ($sql3 = mysql_fetch_assoc($sql2)) {
     // ZUSCHAUER ENDE
     $sponsor_einkommen1 = $daten_team1['sponsor_a'];
     $sponsor_einkommen2 = $daten_team2['sponsor_a'];
-	$spieler_team1a = "SELECT ids, vorname, nachname, position, frische, staerke FROM ".$prefix."spieler WHERE team = '".$team1_id."' AND startelf_".$to_simulate." != 0 AND verletzung = 0 ORDER BY position DESC LIMIT 0, 11";
+	//$spieler_team1a = "SELECT ids, vorname, nachname, position, frische, staerke FROM ".$prefix."spieler WHERE team = '".$team1_id."' AND startelf_".$to_simulate." != 0 AND verletzung = 0 ORDER BY position DESC LIMIT 0, 11";
+	$spieler_team1a = "SELECT ids, vorname, nachname, position, frische, staerke FROM ".$prefix."spieler WHERE team = '".$team1_id."' AND startelf_".$to_simulate." != 0 AND verletzung = 0 ORDER BY position='S', position='M', position='A', position='T' LIMIT 0, 11";
 	$spieler_team1b = mysql_query($spieler_team1a) or reportError(mysql_error(), $spieler_team1a);
 	$spieler_team1 = array();
 	$scorers1 = array();
@@ -839,7 +840,8 @@ while ($sql3 = mysql_fetch_assoc($sql2)) {
 	$spielbericht .= substr($templist, 0, -2);
 	if ($strafeWegenUnvollstaendigkeitTeam1 > 0) { $spielbericht .= ' [Sponsor-Strafe: '.number_format($strafeWegenUnvollstaendigkeitTeam1, 0, ',', '.').' €]'; }
 	$spielbericht .= '</p>';
-	$spieler_team2a = "SELECT ids, vorname, nachname, position, frische, staerke FROM ".$prefix."spieler WHERE team = '".$team2_id."' AND startelf_".$to_simulate." != 0 AND verletzung = 0 ORDER BY position DESC LIMIT 0, 11";
+	//$spieler_team2a = "SELECT ids, vorname, nachname, position, frische, staerke FROM ".$prefix."spieler WHERE team = '".$team2_id."' AND startelf_".$to_simulate." != 0 AND verletzung = 0 ORDER BY position DESC LIMIT 0, 11"; 
+	$spieler_team2a = "SELECT ids, vorname, nachname, position, frische, staerke FROM ".$prefix."spieler WHERE team = '".$team2_id."' AND startelf_".$to_simulate." != 0 AND verletzung = 0 ORDER BY position='S', position='M', position='A', position='T' LIMIT 0, 11";
 	$spieler_team2b = mysql_query($spieler_team2a) or reportError(mysql_error(), $spieler_team2a);
 	$spieler_team2 = array();
 	$scorers2 = array();
@@ -1357,3 +1359,4 @@ $max100 = mysql_query($max100) or reportError(mysql_error(), $max100);
 $min0 = "UPDATE ".$prefix."spieler SET moral = 0 WHERE moral < 0";
 $min0 = mysql_query($min0) or reportError(mysql_error(), $min0);
 ?>
+
