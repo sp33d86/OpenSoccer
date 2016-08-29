@@ -2,7 +2,7 @@
 
 Online Soccer Manager
 
-**Live demo:** [www.opensoccer.org](http://www.opensoccer.org/)
+**Live demo:** [www.db-cloud.de](https://www.db-cloud.de/)
 
 ## Setup
 
@@ -10,7 +10,7 @@ Online Soccer Manager
  2. Add the two subdomains `www` and `m` for your domain
  2. Set up an empty MySQL database with collation `utf8_general_ci` and privileges `SELECT, INSERT, UPDATE, DELETE, DROP`
  3. Run the SQL from [Database/STRUCTURE.sql](Database/STRUCTURE.sql) to create the database structure
- 4. Run the SQL from [Database/DATA.sql](Database/DATA.sql) to add the initial data for the game
+ 4. Run the SQL from [Database/DATA.sql](Database/data.sql) to add the initial data for the game
  5. Edit [Website/config.example.php](Website/config.example.php) so that it matches your installation and rename it to `Website/config.php`
  6. Set up all the cron jobs listed below
  7. Change the password for the default user with administrator rights (username: `Admin`, password: `admin`)
